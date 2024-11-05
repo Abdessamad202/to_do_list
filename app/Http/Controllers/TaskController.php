@@ -16,11 +16,15 @@ class TaskController extends Controller
         // return dd($tasks);!
         return view("home",compact("tasks","completedtasks"));
     }
-    public function add(RequestsTask $request){
+    public function store(RequestsTask $request){
         // $task = Task::create($request->all());
         // return dd($request->all());
         $fillables = ["task"=>$request->task];
         $task = Task::create($fillables);
+        return redirect()->route("task.index");
+    }
+    public function update(Task $task,Request $request){
+        $task->update(["task"=>$request->updated_task]);
         return redirect()->route("task.index");
     }
     public function completed(Task $task){
