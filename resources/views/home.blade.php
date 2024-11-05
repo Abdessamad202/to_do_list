@@ -30,7 +30,7 @@
     <div class="container mt-4">
         <h1 class="text-center">To Do List</h1>
         <div class="input-group mb-3 container">
-            <form action="{{ route('task.store') }}" class="d-flex w-100" method="POST">
+            <form action="{{route('task.store')}}" class="d-flex w-100" method="POST">
                 @csrf
                 <input type="text" name="task" class="form-control" placeholder="New Task ..."
                     aria-label="Recipient's username" aria-describedby="button-addon2">

@@ -10,4 +10,5 @@ class Task extends Model
     protected $fillable = [
         "task",
     ];
+    
 }
