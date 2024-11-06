@@ -1,4 +1,4 @@
-@props(['task'])
+@props(['task','action','lastTask'])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,13 +28,26 @@
             <td style="padding: 20px; color: #555;">
                 <p>We hope this message finds you well.</p>
                 {{-- <p>We are excited to inform you about our latest updates. Our team has been working hard to bring new features and improvements that will enhance your experience with us. Here are some of the highlights:</p> --}}
-                {{-- @if (isset($task->action) && $task->action !== 'create') --}}
+                @if ($action==='create')
                     <p>
                         We are here to tell you that you have added a task called
                         <span style="font-weight: bold;">{{ $task->task }}</span>
-                        at {{ $task->created_at }} {{$task->action}}
+                        at {{ $task->created_at }}
                     </p>
-                {{-- @endif --}}
+                    @elseif ($action ==="update")
+                    <p>
+                        We are here to tell you that you have updated a task called
+                        <span style="font-weight: bold;">{{ $task->last_task }}</span>
+                        to <span style="font-weight: bold;color:rgb(49, 119, 64)">{{ $task->task }}</span>
+                        at {{ $task->updated_at }}
+                    </p>
+                    @elseif ($action ==="delete")
+                    <p>
+                        We are here to tell you that you have deleted a task called
+                        <span style="font-weight: bold;color:red">{{ $task->task }}</span>
+                        at {{ $task->deleted_at}}
+                    </p>
+                @endif
                 {{-- <p>we are here to tell you that you are added a task called <span style="font-weight: bold">{{$task->task}}</span> at {{$task->created_at}}</p> --}}
                 {{-- <ul style="padding-left: 20px;">
                     <li>Feature 1: Brief description of the feature.</li>

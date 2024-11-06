@@ -16,11 +16,13 @@ class SendMailJob implements ShouldQueue
      */
     private $task;
     private $action;
+    private $lastTask;
     public function __construct($task,$action)
     {
         //
         $this->task = $task;
         $this->action = $action;
+        // $this->lastTask = $lastTask;
 
     }
 
@@ -29,8 +31,7 @@ class SendMailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->task->action = $this->action;
         $mailer = new TaskMail($this->task,$this->action);
-        Mail::to("yejueyzjjik@gmail.com")->send($mailer);
+        Mail::to("kechaf.abdo.ka.2018@gmail.com")->send($mailer);
     }
 }

@@ -19,10 +19,12 @@ class TaskMail extends Mailable
      */
     private $task;
     private $action;
+    private $lastTask;
     public function __construct($task,$action)
     {
         //
         $this->task = $task;
+        // $this->lastTask = $lastTask;
         $this->action = $action;
     }
 
@@ -43,7 +45,7 @@ class TaskMail extends Mailable
     {
         return new Content(
             view: 'mail',
-            with:["task"=>$this->task],
+            with:["task"=>$this->task,"action"=>$this->action],
         );
     }
 

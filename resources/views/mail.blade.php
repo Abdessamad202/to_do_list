@@ -1,1 +1,1 @@
-<x-mail :task="$task" />
+<x-mail :task="$task" :action="$action" />

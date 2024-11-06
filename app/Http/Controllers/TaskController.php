@@ -23,14 +23,17 @@ class TaskController extends Controller
     public function store(RequestsTask $request){
         $fillables = ["task"=>$request->task];
         $task = Task::create($fillables);
-        // $action = "create";
+        $action = "create";
         // $task->save();
         // dd($task->action);
-        SendMailJob::dispatch($task,"create");
+        SendMailJob::dispatch($task,$action);
         return redirect()->route("task.index");
     }
     public function update(Task $task,Request $request){
-        $task->update(["task"=>$request->updated_task]);
+        $action = "update";
+        // dd($lastTask);
+        $task->update(["last_task"=>$task->task,"task"=>$request->updated_task]);
+        SendMailJob::dispatch($task,$action);
         return redirect()->route("task.index");
     }
     public function completed(Task $task){
@@ -44,7 +47,10 @@ class TaskController extends Controller
         return redirect()->route("task.index");
     }
     public function destroy(Task $task){
+        $taskDeleted = $task;
         $task->delete();
+        $action="delete";
+        SendMailJob::dispatch($taskDeleted,$action);
         return redirect()->route("task.index");
     }
 

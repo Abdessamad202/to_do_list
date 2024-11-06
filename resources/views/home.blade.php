@@ -52,12 +52,11 @@
                             </div>
                             <div class="col-6">
                                 <div class="div d-flex gap-1">
-                                    <form action="{{ route('task.update', $task->id) }}" method="post">
+                                    
                                         @csrf
                                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" data-bs-whatever="{{ $task->task }}"
                                             data-bs-id="{{ $task->id }}">Update</button>
-                                    </form>
                                     <form action="{{ route('completed.task', $task->id) }}" method="post">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-success">Complete</button>
@@ -133,7 +132,7 @@
 </body>
 <script>
     const exampleModal = document.getElementById('exampleModal')
-    let url = "http://127.0.0.1:8000/task/"
+    let url = "http://localhost:8000/task/"
     if (exampleModal) {
         // let urlStatic
         exampleModal.addEventListener('show.bs.modal', event => {
